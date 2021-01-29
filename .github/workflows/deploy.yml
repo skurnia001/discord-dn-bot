@@ -36,9 +36,10 @@ jobs:
           # content of ssh private key. ex raw content of ~/.ssh/id_rsa
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # execute pre-commands before scp
-#           first_ssh: whoami
-#           # scp from local to remote
+          first_ssh: |
+            whoami
+          # scp from local to remote
 #           scp: # optional
-#           # execute post-commands after scp
+          # execute post-commands after scp
 #           last_ssh: # optional    
           
