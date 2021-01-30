@@ -24,22 +24,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: ssh-scp-ssh-pipelines
-        # You may pin to the exact commit or the version.
-        # uses: cross-the-world/ssh-scp-ssh-pipelines@e1c2bf0c8d7813a3243dc649b6af178262a834e9
-        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.2
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
         with:
-          # ssh remote host
-          host: ec2-18-141-160-59.ap-southeast-1.compute.amazonaws.com
-          # ssh remote user
-          user: ubuntu
-          # content of ssh private key. ex raw content of ~/.ssh/id_rsa
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # execute pre-commands before scp
-          first_ssh: |
-            whoami
-          # scp from local to remote
-#           scp: # optional
-          # execute post-commands after scp
-#           last_ssh: # optional    
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key:  ${{ secrets.SSH_PRIVATE_KEY }}
+          script: whoami 
           
