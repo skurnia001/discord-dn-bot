@@ -3,3 +3,13 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/discordbot/
+    
+branch_config:
+    master:
+        deploymentGroupName: githubdeploy
+        deploymentGroupConfig:
+            serviceRoleArn: arn:aws:iam::241779098843:role/CodeDeployServiceRole
+        deploymentConfig:
+            autoRollbackConfiguration:
+                enabled: true
+    '.*': ~
