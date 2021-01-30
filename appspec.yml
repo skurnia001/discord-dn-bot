@@ -11,5 +11,5 @@ branch_config:
             serviceRoleArn: arn:aws:iam::241779098843:role/CodeDeployServiceRole
         deploymentConfig:
             autoRollbackConfiguration:
-                enabled: true
+                enabled: false
     '.*': ~
