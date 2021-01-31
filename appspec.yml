@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/discordbot/
+    destination: /home/ubuntu/discord-dn-bot/
     
 branch_config:
     master:
