@@ -1,11 +1,11 @@
 ﻿Skill,Class,Jade
 Hacking Stance,Gladiator,DDJ
-Half Moon Slash,Moonlord,DDJ
+Halfmoon Slash,Moonlord,DDJ
 Punishing Swing,Destroyer,DDJ
 Stomp,Barbarian,DDJ
 Dark Stinger,Dark Avenger,DDJ
 Divine Vengeance,Guardian,DDJ
-Smite,Crusader,DDJ
+Electric Smite,Crusader,DDJ
 Mystic Chain,Saint,DDJ
 Lightning Bolt,Inquisitor,DDJ
 Evil Hand,Arch Heretic,DDJ
@@ -16,14 +16,15 @@ Plasma Burst,Abyss Walker,DDJ
 Soul Breaker,Bleed Phantom,DDJ
 Charged Shot,Sniper,DDJ
 Swift Shot,Artillery,DDJ
-Spiral Vortext,Tempest,DDJ
+Spiral Vortex,Tempest,DDJ
 Spiral Kick,Windwalker,DDJ
 Aerial Wild Shot,Silver Hunter,DDJ
 Cannon Blaster,Shooting Star,DDJ
-Mech Ice Pump,Gear Master,DDJ
+Mechanic Ice Pump,Gear Master,DDJ
 Icing Punch,Adept,DDJ
 Injector,Physician,DDJ
-Ulti Atomic Blade,Ray Mechanic,DDJ
+Atomic Blade,Ray Mechanic,DDJ
+Mecha Laser,Ray Mechanic,DDJ
 Stab Screw,Flurry,DDJ
 Piercing Spike,Sting Breezer,DDJ
 Gale Stab,Avalanche,DDJ
@@ -61,7 +62,7 @@ Outbreak,Light Fury,BMJ
 Shadow Focus,Abyss Walker,BMJ
 Pass Away,Bleed Phantom,BMJ
 Arrow Shower,Sniper,BMJ
-Tracking Arrow,Artillery,BMJ
+Tracking Arrows,Artillery,BMJ
 Kick Shot,Tempest,BMJ
 Eagle Dive,Windwalker,BMJ
 Rising Wind,Silver Hunter,BMJ
@@ -94,7 +95,7 @@ Unchained Bolt,Trickster,BMJ
 Line Drive,Gladiator,FMJ
 Cyclone Slash,Moonlord,FMJ
 Rolling Attack,Destroyer,FMJ
-Circle Swing,Barbarian,FMJ
+Whirlwind,Barbarian,FMJ
 Piercing Crescent,Dark Avenger,FMJ
 Divine Judgement,Guardian,FMJ
 Holy Relic,Crusader,FMJ
@@ -109,7 +110,7 @@ Lethal Torture,Bleed Phantom,FMJ
 Aerial Chain Shot,Sniper,FMJ
 Rapid Shot,Artillery,FMJ
 Binding Shot,Tempest,FMJ
-Cyclone Kick,Windwalker,FMJ
+Blooming Kick,Windwalker,FMJ
 Deluge Bolt,Silver Hunter,FMJ
 Mine Thrower,Shooting Star,FMJ
 Mechanic Cannon,Gear Master,FMJ
@@ -127,11 +128,13 @@ Nine Tail Laser,Smasher,FMJ
 Gravity Ball,Majesty,FMJ
 Black Strike,Black Mara,FMJ
 Revenge Hand,Dark Summoner,FMJ
-Soul Eater,Soul Eater,FMJ
-Blade Dancer,Blade Dancer,FMJ
-Spirit Dancer,Spirit Dancer,FMJ
-Oracle Elder,Oracle Elder,FMJ
-Defensio,Defensio,FMJ
-Ruina,Ruina,FMJ
-Impactor,Impactor,FMJ
-Buster,Buster,FMJ
+Cling Snake,Soul Eater,FMJ
+Sweet Circle,Blade Dancer,FMJ
+Stalker,Spirit Dancer,FMJ
+Vanishing Spada,Oracle Elder,FMJ
+Beyond the Wall,Defensio,FMJ
+Flying Knee Kick,Ruina,FMJ
+L-Action,Impactor,FMJ
+Lightning Elevation,Buster,FMJ
+Flush,Duelist,FMJ
+Split Fire,Trickster,FMJ
