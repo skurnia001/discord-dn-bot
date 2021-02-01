@@ -1,141 +1,201 @@
-﻿Skill,Class,Jade
-Hacking Stance,Gladiator,DDJ
-Halfmoon Slash,Moonlord,DDJ
-Punishing Swing,Destroyer,DDJ
-Stomp,Barbarian,DDJ
-Dark Stinger,Dark Avenger,DDJ
-Divine Vengeance,Guardian,DDJ
-Electric Smite,Crusader,DDJ
-Mystic Chain,Saint,DDJ
-Lightning Bolt,Inquisitor,DDJ
-Evil Hand,Arch Heretic,DDJ
-Flame Locust,Ripper,DDJ
-Applause,Raven,DDJ
-Full Brightness,Light Fury,DDJ
-Plasma Burst,Abyss Walker,DDJ
-Soul Breaker,Bleed Phantom,DDJ
-Charged Shot,Sniper,DDJ
-Swift Shot,Artillery,DDJ
-Spiral Vortex,Tempest,DDJ
-Spiral Kick,Windwalker,DDJ
-Aerial Wild Shot,Silver Hunter,DDJ
-Cannon Blaster,Shooting Star,DDJ
-Mechanic Ice Pump,Gear Master,DDJ
-Icing Punch,Adept,DDJ
-Injector,Physician,DDJ
-Atomic Blade,Ray Mechanic,DDJ
-Mecha Laser,Ray Mechanic,DDJ
-Stab Screw,Flurry,DDJ
-Piercing Spike,Sting Breezer,DDJ
-Gale Stab,Avalanche,DDJ
-Lava Raid,Randgrid,DDJ
-Blood Shot,Venaplaga,DDJ
-Inferno,Saleana,DDJ
-Freezing Field,Elestra,DDJ
-Linear Ray,Smasher,DDJ
-Black Hole,Majesty,DDJ
-Void Coil,Black Mara,DDJ
-Chain Claw,Dark Summoner,DDJ
-Spirit Paper,Soul Eater,DDJ
-Twinkle Spin,Blade Dancer,DDJ
-General Dunblade,Spirit Dancer,DDJ
-Sharp Hurricane,Oracle Elder,DDJ
-Leap Over,Defensio,DDJ
-Flow Thru,Ruina,DDJ
-L-Buster,Impactor,DDJ
-Laser Piercer,Buster,DDJ
-Arrow Sword,Duelist,DDJ
-Clutch Field,Trickster,DDJ
-Triple Slash,Gladiator,BMJ
-Crescent Cleave,Moonlord,BMJ
-Flying Swing,Destroyer,BMJ
-Demolition Fist,Barbarian,BMJ
-Vengeance Storm,Dark Avenger,BMJ
-Divine Ascension,Guardian,BMJ
-Lightning Zap,Crusader,BMJ
-Holy Burst,Saint,BMJ
-Detonate,Inquisitor,BMJ
-Devastation,Arch Heretic,BMJ
-Blade Runner,Ripper,BMJ
-Open Edge,Raven,BMJ
-Outbreak,Light Fury,BMJ
-Shadow Focus,Abyss Walker,BMJ
-Pass Away,Bleed Phantom,BMJ
-Arrow Shower,Sniper,BMJ
-Tracking Arrows,Artillery,BMJ
-Kick Shot,Tempest,BMJ
-Eagle Dive,Windwalker,BMJ
-Rising Wind,Silver Hunter,BMJ
-Biochem Missile,Shooting Star,BMJ
-Mech Gatling Gun,Gear Master,BMJ
-Magma Wave,Adept,BMJ
-Poison Break,Physician,BMJ
-Resonator,Ray Mechanic,BMJ
-Shutter Bounce,Flurry,BMJ
-Hovering Blade,Sting Breezer,BMJ
-Extreme Twister,Avalanche,BMJ
-Iron Lance,Randgrid,BMJ
-Subconscious,Venaplaga,BMJ
-Flame Road,Saleana,BMJ
-Chilling Mist,Elestra,BMJ
-Spectrum Shower,Smasher,BMJ
-Summon Comet,Majesty,BMJ
-Smoke Storm,Black Mara,BMJ
-Phantom Claw,Dark Summoner,BMJ
-Beast Spirit,Soul Eater,BMJ
-Elegant Storm,Blade Dancer,BMJ
-Abolisher,Spirit Dancer,BMJ
-Twister,Oracle Elder,BMJ
-Beat Down,Defensio,BMJ
-Kidney Blow,Ruina,BMJ
-L-Combo,Impactor,BMJ
-Carnival Rush,Buster,BMJ
-Ripple Effect,Duelist,BMJ
-Unchained Bolt,Trickster,BMJ
-Line Drive,Gladiator,FMJ
-Cyclone Slash,Moonlord,FMJ
-Rolling Attack,Destroyer,FMJ
-Whirlwind,Barbarian,FMJ
-Piercing Crescent,Dark Avenger,FMJ
-Divine Judgement,Guardian,FMJ
-Holy Relic,Crusader,FMJ
-Holy Flux,Saint,FMJ
-Falling Thunder,Inquisitor,FMJ
-Savage Attack,Arch Heretic,FMJ
-Mortal Blow,Ripper,FMJ
-Rake,Raven,FMJ
-Ring Strike,Light Fury,FMJ
-Night Explosion,Abyss Walker,FMJ
-Lethal Torture,Bleed Phantom,FMJ
-Aerial Chain Shot,Sniper,FMJ
-Rapid Shot,Artillery,FMJ
-Binding Shot,Tempest,FMJ
-Blooming Kick,Windwalker,FMJ
-Deluge Bolt,Silver Hunter,FMJ
-Mine Thrower,Shooting Star,FMJ
-Mechanic Cannon,Gear Master,FMJ
-Magma Punch,Adept,FMJ
-Mixed Infection,Physician,FMJ
-Dynamic Laser,Ray Mechanic,FMJ
-Spinning Cut,Flurry,FMJ
-Fling Fling,Sting Breezer,FMJ
-Frosty Cross,Avalanche,FMJ
-Stomp N Stab,Randgrid,FMJ
-Fatalism,Venaplaga,FMJ
-Fire Ball,Saleana,FMJ
-Frozen Spike,Elestra,FMJ
-Nine Tail Laser,Smasher,FMJ
-Gravity Ball,Majesty,FMJ
-Black Strike,Black Mara,FMJ
-Revenge Hand,Dark Summoner,FMJ
-Cling Snake,Soul Eater,FMJ
-Sweet Circle,Blade Dancer,FMJ
-Stalker,Spirit Dancer,FMJ
-Vanishing Spada,Oracle Elder,FMJ
-Beyond the Wall,Defensio,FMJ
-Flying Knee Kick,Ruina,FMJ
-L-Action,Impactor,FMJ
-Lightning Elevation,Buster,FMJ
-Flush,Duelist,FMJ
-Split Fire,Trickster,FMJ
-TEST,TEST,TEST
+Equipment,Skill,Class,Jade
+Seeker,Hacking Stance,Gladiator,DDJ
+Moonlit Assassin,Halfmoon Slash,Moonlord,DDJ
+Lateral Collapse,Punishing Swing,Destroyer,DDJ
+Giant's Footsteps,Stomp,Barbarian,DDJ
+Attitude's Bullet,Dark Stinger,Dark Avenger,DDJ
+Brilliant Friction,Divine Vengeance,Guardian,DDJ
+Divine Punishment,Electric Smite,Crusader,DDJ
+Leading Faith,Mystic Chain,Saint,DDJ
+Lightening Strike,Lightning Bolt,Inquisitor,DDJ
+One with Darkness,Evil Hand,Arch Heretic,DDJ
+Nergal,Flame Locust,Ripper,DDJ
+Lilith,Applause,Raven,DDJ
+Belial,Full Brightness,Light Fury,DDJ
+Vampire,Plasma Burst,Abyss Walker,DDJ
+Werewolf,Soul Breaker,Bleed Phantom,DDJ
+Splendid Empress,Charged Shot,Sniper,DDJ
+Underhanded Recluse,Swift Shot,Artillery,DDJ
+gleaming Moonlight,Spiral Vortex,Tempest,DDJ
+Destruction,Spiral Kick,Windwalker,DDJ
+Brutal Hangman's,Aerial Wild Shot,Silver Hunter,DDJ
+Forgotten Blind Shell,Cannon Blaster,Shooting Star,DDJ
+Ice Injector,Mechanic Ice Pump,Gear Master,DDJ
+Chilling Downthrow,Icing Punch,Adept,DDJ
+Vigor Injection,Injector,Physician,DDJ
+Cosmic Flash,Atomic Blade,Ray Mechanic,DDJ
+Cosmic Flash,Mecha Laser,Ray Mechanic,DDJ
+SwordBlade,Stab Screw,Flurry,DDJ
+Sharp Attack,Piercing Spike,Sting Breezer,DDJ
+Unending Fight,Gale Stab,Avalanche,DDJ
+Leap of Trust,Lava Raid,Randgrid,DDJ
+Bursting Madness,Blood Shot,Venaplaga,DDJ
+Firey Breath,Inferno,Saleana,DDJ
+Frozen Ground,Freezing Field,Elestra,DDJ
+Blinding Flash,Linear Ray,Smasher,DDJ
+Consuming Despair,Black Hole,Majesty,DDJ
+Raging Punisher,Void Coil,Black Mara,DDJ
+Forbidden Leap,Chain Claw,Dark Summoner,DDJ
+Final Recording,Spirit Paper,Soul Eater,DDJ
+Storm Chaser,Twinkle Spin,Blade Dancer,DDJ
+Spoils of War,General Dunblade,Spirit Dancer,DDJ
+Wheel of Splendor,Sharp Hurricane,Oracle Elder,DDJ
+Graceful Landing,Leap Over,Defensio,DDJ
+Sonic Boom,Flow Through,Ruina,DDJ
+Chick,L-Buster,Impactor,DDJ
+Bling Bling,Laser Piercer,Buster,DDJ
+Aerial Leap,Arrow Sword,Duelist,DDJ
+Spark of Raining Blossom,Clutch Field,Trickster,DDJ
+Third Chance,Triple Slash,Gladiator,BMJ
+Sword Light,Crescent Cleave,Moonlord,BMJ
+Nice Shot,Flying Swing,Destroyer,BMJ
+Giant Fist,Demolition Fist,Barbarian,BMJ
+Revenge's End,Vengeance Storm,Dark Avenger,BMJ
+Lawful Justice,Divine Ascension,Guardian,BMJ
+Punishing,Lightning Zap,Crusader,BMJ
+Heaven's Wrath,Holy Burst,Saint,BMJ
+Exploding Thunder,Detonate,Inquisitor,BMJ
+Caller of Destruction,Devastation,Arch Heretic,BMJ
+Azazel,Blade Runner,Ripper,BMJ
+Amon,Open Edge,Raven,BMJ
+Asmodeus,Outbreak,Light Fury,BMJ
+Medusa,Shadow Focus,Abyss Walker,BMJ
+Griffin,Pass Away,Bleed Phantom,BMJ
+Merciless Judgement,Arrow Shower,Sniper,BMJ
+Arrogant Emperor,Tracking Arrows,Artillery,BMJ
+Infinite Power,Kick Shot,Tempest,BMJ
+Kissed By the Death,Eagle Dive,Windwalker,BMJ
+Stuck Time,Rising Wind,Silver Hunter,BMJ
+Flame Composite Reaction,Biochemical Missile,Shooting Star,BMJ
+Operation Alpha,Mechanic Gatling Gun,Gear Master,BMJ
+Crushing Wave,Magma Wave,Adept,BMJ
+Rejection,Poison Break,Physician,BMJ
+Tectonic Overthrow,Resonator,Ray Mechanic,BMJ
+Tectonic Overthrow,Crash Landing,Ray Mechanic,BMJ
+Ground Striker,Shutter Bounce,Flurry,BMJ
+Flickering Mirage,Hovering Blade,Sting Breezer,BMJ
+Dance of Raging Wind,Extreme Twister,Avalanche,BMJ
+Firm Trust,Iron Lance,Randgrid,BMJ
+Devoured Hope,Subconscious,Venaplaga,BMJ
+Hell's Fireroad,Flame Road,Saleana,BMJ
+Spreading Chill,Chilling Mist,Elestra,BMJ
+Arbiter of Light,Spectrum Shower,Smasher,BMJ
+Black Dimensional Rock,Summon Comet,Majesty,BMJ
+Death Hurricane,Smoke Storm,Black Mara,BMJ
+Devil's Symphony,Phantom Claw,Dark Summoner,BMJ
+Giant Footprint,Beast Spirit,Soul Eater,BMJ
+Coming Storm,Elegant Storm,Blade Dancer,BMJ
+Jet Stream,Abolisher,Spirit Dancer,BMJ
+Eye of the Storm,Twister,Oracle Elder,BMJ
+Fallen Angel,Beat Down,Defensio,BMJ
+Cosmic Blaster,Kidney Blow,Ruina,BMJ
+Puppy,L-Combo,Impactor,BMJ
+Boogie,Carnival Rush,Buster,BMJ
+Integrity of Red Lotus,Ripple Effect,Duelist,BMJ
+Chasing Assassin,Unchained Bolt,Trickster,BMJ
+Faithful,Line Drive,Gladiator,FMJ
+Storm Pathfinder,Cyclone Slash,Moonlord,FMJ
+Infinite Orbit,Rolling Attack,Destroyer,FMJ
+Savage King,Whirlwind,Barbarian,FMJ
+World Divider,Piercing Crescent,Dark Avenger,FMJ
+Compressed Light,Divine Judgement,Guardian,FMJ
+Sacred Stigna,Holy Relic,Crusader,FMJ
+Punishing Essence,Holy Flux,Saint,FMJ
+Thunderbolt of Purification,Falling Thunder,Inquisitor,FMJ
+Dread of Wild,Savage Attack,Arch Heretic,FMJ
+Leviathan,Mortal Blow,Ripper,FMJ
+Incubus,Rake,Raven,FMJ
+Belphegor,Ring Strike,Light Fury,FMJ
+Ifrit,Night Explosion,Abyss Walker,FMJ
+Kraken,Lethal Torture,Bleed Phantom,FMJ
+Devil's Whisper,Aerial Chain Shot,Sniper,FMJ
+Starlight Glimmering,Rapid Shot,Artillery,FMJ
+Merciful Pope,Binding Shot,Tempest,FMJ
+Sunlight Seeped,Blooming Kick,Windwalker,FMJ
+Love Stricken,Deluge Bolt,Silver Hunter,FMJ
+Blaze,Mine Thrower,Shooting Star,FMJ
+Operation Beta,Mechanic Cannon,Gear Master,FMJ
+Burning Reactor,Magma Punch,Adept,FMJ
+Final Drop,Mixed Infection,Physician,FMJ
+Violent Hurricane,Dynamic Laser,Ray Mechanic,FMJ
+Calm Lightning,Spinning Cut,Flurry,FMJ
+Pole Dance,Fling Fling,Sting Breezer,FMJ
+Vivid Threshold,Frosty Cross,Avalanche,FMJ
+Strong Vigor,Stomp N Stab,Randgrid,FMJ
+Destiny and Fate,Fatalism,Venaplaga,FMJ
+Exploding Firework,Fireball,Saleana,FMJ
+Icebound Prison,Frozen Spike,Elestra,FMJ
+Indiscriminate Bombardment,Nine Tail Laser,Smasher,FMJ
+Advent Doom,Gravity Ball,Majesty,FMJ
+Chilling Horror,Black Strike,Black Mara,FMJ
+Purgatory Revelation,Revenge Hand,Dark Summoner,FMJ
+Paper Viper,Cling Snake,Soul Eater,FMJ
+Sweet Death,Sweet Circle,Blade Dancer,FMJ
+Death's Embrace,Stalker,Spirit Dancer,FMJ
+Fallen Light,Vanishing Spada,Oracle Elder,FMJ
+Void Wanderer,Beyond the Wall,Defensio,FMJ
+Cheerful Leap,Flying Knee Kick,Ruina,FMJ
+Kitty,L-Action,Impactor,FMJ
+Popstar,Lightning Elevation,Buster,FMJ
+Coarse Flow,Flush,Duelist,FMJ
+Broken Canine Tooth,Split Fire,Trickster,FMJ
+Deep Wound,Deep Straight,Gladiator,None
+Moonlight Pathfinder,Moonlight Splitter,Moonlord,None
+Vein Buster,Circle Bombs,Destroyer,None
+Slugger,Circle Swing,Barbarian,None
+Endless Patience,Siege Stance,Sniper,None
+Enchanted,Scope Arrow,Artillery,None
+Wheel of Fate,Double Somersault Kick,Tempest,None
+Daydreaming,Air Pounce,Windwalker,None
+Golden Chariot,Cyclone Kick,Windwalker,None
+Conviction of the Red Flame,Fire Wall,Saleana,None
+Reaching Icicle,Icy Shards,Elestra,None
+Increasing Darkness,Triple Orbs,Majesty,None
+Ritual of Extinction,Gravity Ascension,Majesty,None
+Sacralized,Divine Punishment EX,Guardian,None
+Light of Destruction,Holy Bolt,Saint,None
+Bullet Curve,Ping Pong Bomb,Shooting Star,None
+Daring Venenation,Disease,Physician,None
+Pursuit of Dream,Rampage Claw,Dark Summoner,None
+Wind Heart,Graze Dance,Blade Dancer,None
+Speed Racer,Deadly Drill,Blade Dancer,None
+Flooding Protection,Dusk Hunter,Spirit Dancer,None
+Dance of Wind,Sufi Dancer,Spirit Dancer,None
+Paimon,Shift Blow,Ripper,None
+Belzebuth,Izuna Drop,Ripper,None
+Succubus,Rain Drop,Raven,None
+Lucifer,Punishment,Raven,None
+Salamander,Illusion Strike,Abyss Walker,None
+Cerberos,Line of Darkness,Abyss Walker,None
+Revolving Storm,Lollipop Chops,Flurry,None
+Majestic Sworddance,Spinning Swing,Flurry,None
+Magic Explosion,Spear Hand,Sting Breezer,None
+Lonely Dancer,Dent Blow,Sting Breezer,None
+Flowing Dark Aura,Graves,Dark Avenger,None
+Apocalypse Prophecy,Doom Blade,Dark Avenger,None
+Blissful Crash,Step Up,Defensio,None
+Great First Step,Foot Stomp,Ruina,None
+Interlocked Gear,Flow Up,Ruina,None
+Guardian of Justice,Spiral Bolt,Silver Hunter,None
+Hidden Secret,Arrow Storm,Silver Hunter,None
+Ash Grey Executioner,Execute,Arch Heretic,None
+Beauty of Pain,Carnage,Arch Heretic,None
+Merciless View,Ripping,Black Mara,None
+Darkness Descent,Cleaving,Black Mara,None
+Catastrophe,Multiflexer,Ray Mechanic,None
+Catastrophe,Shoulder Charge,Ray Mechanic,None
+Juggernaut,Flick,Ray Mechanic,None
+Juggernaut,Crashing Charge,Ray Mechanic,None
+Splendid Hurricane,Wild Spada,Oracle Elder,None
+Shock and Awe,Rising Gust,Oracle Elder,None
+Behemoth,Madness,Bleed Phantom,None
+Simurgh,Intense Suffering,Bleed Phantom,None
+Collapsing Formation,Splitter,Avalanche,None
+Trace of Lightning,Momentary Phantasm,Avalance,None
+Reckless Path,Radical Charge,Randgrid,None
+Pivoting Spiral,Land Crush,Randgrid,None
+Piglet,Stunt Crush,Impactor,None
+Rock N Roll,Flood Trick,Buster,None
+Infinite Chain,Thorn of Reproof,Venaplaga,None
+Weakness Detection,Pale Burst,Duelist,None
+The End of The World,Out Link,Trickster,None
