@@ -24,7 +24,6 @@ Ice Injector,Mechanic Ice Pump,Gear Master,DDJ
 Chilling Downthrow,Icing Punch,Adept,DDJ
 Vigor Injection,Injector,Physician,DDJ
 Cosmic Flash,Atomic Blade,Ray Mechanic,DDJ
-Cosmic Flash,Mecha Laser,Ray Mechanic,DDJ
 SwordBlade,Stab Screw,Flurry,DDJ
 Sharp Attack,Piercing Spike,Sting Breezer,DDJ
 Unending Fight,Gale Stab,Avalanche,DDJ
@@ -71,7 +70,6 @@ Operation Alpha,Mechanic Gatling Gun,Gear Master,BMJ
 Crushing Wave,Magma Wave,Adept,BMJ
 Rejection,Poison Break,Physician,BMJ
 Tectonic Overthrow,Resonator,Ray Mechanic,BMJ
-Tectonic Overthrow,Crash Landing,Ray Mechanic,BMJ
 Ground Striker,Shutter Bounce,Flurry,BMJ
 Flickering Mirage,Hovering Blade,Sting Breezer,BMJ
 Dance of Raging Wind,Extreme Twister,Avalanche,BMJ
@@ -183,9 +181,7 @@ Beauty of Pain,Carnage,Arch Heretic,None
 Merciless View,Ripping,Black Mara,None
 Darkness Descent,Cleaving,Black Mara,None
 Catastrophe,Electronic Spanner,Ray Mechanic,None
-Catastrophe,Shoulder Charge,Ray Mechanic,None
 Juggernaut,Plasma Field,Ray Mechanic,None
-Juggernaut,Crashing Charge,Ray Mechanic,None
 Splendid Hurricane,Wild Spada,Oracle Elder,None
 Shock and Awe,Rising Gust,Oracle Elder,None
 Behemoth,Madness,Bleed Phantom,None
