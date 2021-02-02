@@ -68,7 +68,7 @@ class Venti(commands.Cog):
     async def on_message(self, message):
         if message.author == bot.user:
             return
-        if "ehe" in message.content:
+        if "ehe" in message.content.lower():
             await message.channel.send("EHE TE NANDAYO")
 
     # @commands.command(name='')
