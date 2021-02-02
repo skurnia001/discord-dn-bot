@@ -8,7 +8,7 @@ from discord.ext import commands
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix=('/', 'ehe'))
+bot = commands.Bot(command_prefix=('/',))
 
 
 class DNSkillQuery(commands.Cog):
@@ -68,8 +68,15 @@ class Venti(commands.Cog):
     async def on_message(self, message):
         if message.author == bot.user:
             return
-        await message.channel.send("EHE TE NANDAYO")
+        if "ehe" in message.content:
+            await message.channel.send("EHE TE NANDAYO")
 
+    # @commands.command(name='')
+    # async def ehe(self, ctx, *args):
+    #     if ctx.author == bot.user:
+    #         return
+    #     # if "ehe" in ctx.message:
+    #     await ctx.send("EHE TE NANDAYO")
 
 bot.add_cog(DNSkillQuery(bot))
 bot.add_cog(Venti(bot))
