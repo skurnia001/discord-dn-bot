@@ -43,7 +43,7 @@ class DNSkillQuery(commands.Cog):
 
     @commands.command(name='esq', aliases=['eqskillquery', ],
                       help='Finds a class whose skill is in the equipment name given.')
-    async def jsq(self, ctx, *args):
+    async def esq(self, ctx, *args):
         equipment = ' '.join(args)
         equipment = equipment.lower()
         if equipment in self.dic2:
