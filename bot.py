@@ -1,9 +1,11 @@
 # bot.py
+import difflib
 import os
 import string
 import csv
 from dotenv import load_dotenv
 from discord.ext import commands
+import pandas as pd
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -16,7 +18,11 @@ class DNSkillQuery(commands.Cog):
         self.bot = bot
         self.dic1 = dict()
         self.dic2 = dict()
+        self.df = pd.read_csv('skill.csv')
         self.prefix = '/'
+        self.thresh = 0.6
+        self.allowed_col = ['Equipment', 'Skill', 'Class']
+        self.matcher = difflib.SequenceMatcher(lambda x: x == ' ')
 
         with open('skill.csv', 'r', newline='', encoding='utf-8-sig') as f:
             reader = csv.reader(f)
@@ -24,14 +30,30 @@ class DNSkillQuery(commands.Cog):
                 self.dic1[row[1].lower()] = {"class": row[2], "jade": row[3], "equipment": row[0]}
                 self.dic2[row[0].lower()] = {"class": row[2], "jade": row[3], "skill": row[1]}
 
+    def sim_score(self, str_1, str_2):
+        self.matcher.set_seqs(str_1.lower(), str_2.lower())
+        return self.matcher.ratio()
+
+    @commands.command(name='query', aliasses=['qd', 'qry'],
+                      help='General query of the database, arg: col_name skill names')
+    async def query(self, ctx, col, *args):
+        col = string.capwords(col)
+        if col not in self.allowed_col:
+            await ctx.send("Column selection not allowed!")
+            return
+        name = ' '.join(args).lower()
+        tmp = self.df.copy()
+        tmp['Score'] = tmp[string.capwords(col)].map(lambda x: self.sim_score(x, name))
+        tmp.sort_values('Score', inplace=True, ascending=False)
+        await ctx.send(tmp[tmp['Score'] > self.thresh])
+
     async def cog_check(self, ctx):
         return ctx.prefix == self.prefix
 
     @commands.command(name='jsq', aliases=['jadeskillquery', ],
                       help='Finds a class whose skill match the skill name given.')
     async def jsq(self, ctx, *args):
-        skill = ' '.join(args)
-        skill = skill.lower()
+        skill = ' '.join(args).lower()
         if skill in self.dic1:
             response = "This is {}'s skill for {}, equipment name: {}".format(self.dic1[skill]['class'],
                                                                               self.dic1[skill]['jade'],
@@ -44,8 +66,7 @@ class DNSkillQuery(commands.Cog):
     @commands.command(name='esq', aliases=['eqskillquery', ],
                       help='Finds a class whose skill is in the equipment name given.')
     async def esq(self, ctx, *args):
-        equipment = ' '.join(args)
-        equipment = equipment.lower()
+        equipment = ' '.join(args).lower()
         if equipment in self.dic2:
             response = "This is {}'s equipment for {}, skill name: {}".format(self.dic2[equipment]['class'],
                                                                               self.dic2[equipment]['jade'],
@@ -77,6 +98,7 @@ class Venti(commands.Cog):
     #         return
     #     # if "ehe" in ctx.message:
     #     await ctx.send("EHE TE NANDAYO")
+
 
 bot.add_cog(DNSkillQuery(bot))
 bot.add_cog(Venti(bot))
