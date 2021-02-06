@@ -34,7 +34,7 @@ class DNSkillQuery(commands.Cog):
         self.matcher.set_seqs(str_1.lower(), str_2.lower())
         return self.matcher.ratio()
 
-    @commands.command(name='query', aliasses=['qd', 'qry'],
+    @commands.command(name='query', aliases=['qd', 'qry'],
                       help='General query of the database, arg: col_name skill names')
     async def query(self, ctx, col, *args):
         col = string.capwords(col)
