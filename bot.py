@@ -16,19 +16,11 @@ bot = commands.Bot(command_prefix=('/',))
 class DNSkillQuery(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.dic1 = dict()
-        self.dic2 = dict()
         self.df = pd.read_csv('skill.csv')
         self.prefix = '/'
         self.thresh = 0.6
         self.allowed_col = ['Equipment', 'Skill', 'Class']
         self.matcher = difflib.SequenceMatcher(lambda x: x == ' ')
-
-        with open('skill.csv', 'r', newline='', encoding='utf-8-sig') as f:
-            reader = csv.reader(f)
-            for row in reader:
-                self.dic1[row[1].lower()] = {"class": row[2], "jade": row[3], "equipment": row[0]}
-                self.dic2[row[0].lower()] = {"class": row[2], "jade": row[3], "skill": row[1]}
 
     def sim_score(self, str_1, str_2):
         self.matcher.set_seqs(str_1.lower(), str_2.lower())
@@ -53,28 +45,12 @@ class DNSkillQuery(commands.Cog):
     @commands.command(name='jsq', aliases=['jadeskillquery', ],
                       help='Finds a class whose skill match the skill name given.')
     async def jsq(self, ctx, *args):
-        skill = ' '.join(args).lower()
-        if skill in self.dic1:
-            response = "This is {}'s skill for {}, equipment name: {}".format(self.dic1[skill]['class'],
-                                                                              self.dic1[skill]['jade'],
-                                                                              self.dic1[skill]['equipment'])
-        else:
-            response = "No skill found :("
-
-        await ctx.send(response)
+        await self.query(ctx, 'skill', *args)
 
     @commands.command(name='esq', aliases=['eqskillquery', ],
                       help='Finds a class whose skill is in the equipment name given.')
     async def esq(self, ctx, *args):
-        equipment = ' '.join(args).lower()
-        if equipment in self.dic2:
-            response = "This is {}'s equipment for {}, skill name: {}".format(self.dic2[equipment]['class'],
-                                                                              self.dic2[equipment]['jade'],
-                                                                              self.dic2[equipment]['skill'])
-        else:
-            response = "No equipment found :("
-
-        await ctx.send(response)
+        await self.query(ctx, 'equipment', *args)
 
 
 class Venti(commands.Cog):
