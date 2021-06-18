@@ -1,14 +1,23 @@
 # bot.py
+import datetime
 import difflib
 import os
 import string
-import csv
+
+import pymongo
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 from discord.ext import commands
 import pandas as pd
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+CHANNEL_ID = int(os.getenv('DISCORD_CHANNEL_ID'))
+DB_UNAME = os.getenv('DB_UNAME')
+DB_PWD = os.getenv('DB_PWD')
+DB_URL = os.getenv('DB_URL')
+
 
 bot = commands.Bot(command_prefix=('/',))
 
@@ -37,7 +46,8 @@ class DNSkillQuery(commands.Cog):
         tmp = self.df.copy()
         tmp['Score'] = tmp[string.capwords(col)].map(lambda x: self.sim_score(x, name))
         tmp.sort_values('Score', inplace=True, ascending=False)
-        await ctx.send(tmp[tmp['Score'] > self.thresh])
+        res = tmp[tmp['Score'] > self.thresh]
+        await ctx.send("```\n"+res.to_string()+"```\n")
 
     async def cog_check(self, ctx):
         return ctx.prefix == self.prefix
@@ -76,7 +86,61 @@ class Venti(commands.Cog):
     #     await ctx.send("EHE TE NANDAYO")
 
 
+class DNReminderEventBot(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.scheduler = AsyncIOScheduler()
+        self.scheduler.add_job(self.func, CronTrigger(hour="0, 21, 23"))
+        self.scheduler.start()
+        connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority"
+        self.client = pymongo.MongoClient(connection_string)
+        self.db = self.client.dn_event_db.dn_event_db
+
+    async def func(self):
+        c = bot.get_channel(CHANNEL_ID)
+        arr = []
+        query_dic = {
+            "start_date": {"$lt": datetime.datetime.utcnow()},
+            "end_date": {"$gt": datetime.datetime.utcnow()}
+        }
+        for row in self.db.find(query_dic):
+            del row['_id']
+            row['start_date'] = row['start_date'].strftime('%Y-%m-%d %H:%M:%S')
+            row['end_date'] = row['end_date'].strftime('%Y-%m-%d %H:%M:%S')
+            arr.append(row)
+        res_df = pd.DataFrame(arr)
+        if len(arr) != 0:  # TODO: STUPID HOTFIX
+            res_df.columns = ["Event Name", "Event Description", "Start Date", "End Date"]
+        await c.send("```\n"+res_df.to_string()+"\n```")
+
+    @commands.command(name='addev', aliases=['addevent'],
+                      help="Add event to be reminded daily")
+    async def add_event(
+            self,
+            ctx,
+            event_name: str,
+            start_year: int,
+            start_month: int,
+            start_day: int,
+            end_year: int,
+            end_month: int,
+            end_day: int,
+            event_desc: str = ''):
+        start_date = datetime.datetime(start_year, start_month, start_day)
+        end_date = datetime.datetime(end_year, end_month, end_day)
+        obj_dic = {
+            "event_name": event_name,
+            "event_desc": event_desc,
+            "start_date": start_date,
+            "end_date": end_date
+        }
+        self.db.insert_one(obj_dic)
+        await ctx.send("event recorded")
+
+
 bot.add_cog(DNSkillQuery(bot))
 bot.add_cog(Venti(bot))
+bot.add_cog(DNReminderEventBot(bot))
 
+print("Bot started...")
 bot.run(TOKEN)
