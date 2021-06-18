@@ -113,6 +113,25 @@ class DNReminderEventBot(commands.Cog):
             res_df.columns = ["Event Name", "Event Description", "Start Date", "End Date"]
         await c.send("```\n"+res_df.to_string()+"\n```")
 
+    # TODO: REFACTOR
+    @commands.command(name="qev", aliases=['queryevent', 'qevent'],
+                      help="Get all events")
+    async def func(self, ctx):
+        arr = []
+        query_dic = {
+            "start_date": {"$lt": datetime.datetime.utcnow()},
+            "end_date": {"$gt": datetime.datetime.utcnow()}
+        }
+        for row in self.db.find(query_dic):
+            del row['_id']
+            row['start_date'] = row['start_date'].strftime('%Y-%m-%d %H:%M:%S')
+            row['end_date'] = row['end_date'].strftime('%Y-%m-%d %H:%M:%S')
+            arr.append(row)
+        res_df = pd.DataFrame(arr)
+        if len(arr) != 0:  # TODO: STUPID HOTFIX
+            res_df.columns = ["Event Name", "Event Description", "Start Date", "End Date"]
+        await ctx.send("```\n" + res_df.to_string() + "\n```")
+
     @commands.command(name='addev', aliases=['addevent'],
                       help="Add event to be reminded daily")
     async def add_event(
