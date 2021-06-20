@@ -1,0 +1,60 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+      - name: ssh-scp-ssh-pipelines
+        # You may pin to the exact commit or the version.
+        # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        with:
+          # ssh remote host
+          host: ${{ secrets.HOST }}
+          # ssh remote port
+          port: ${{ secrets.PORT }}
+          # ssh remote user
+          user: ${{ secret.USER }}
+          # content of ssh private key. ex raw content of ~/.ssh/id_rsa
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # connection timeout to remote host
+          connect_timeout: 10s
+          # execute pre-commands before scp
+          first_ssh: |
+            echo "hello world"
+            lsb_release -a
+          # scp from local to remote
+          scp: # optional
+          # execute post-commands after scp
+          last_ssh: |
+            echo "hello world2"
