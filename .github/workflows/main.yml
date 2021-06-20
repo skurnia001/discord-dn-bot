@@ -44,7 +44,7 @@ jobs:
           # ssh remote port
           port: ${{ secrets.PORT }}
           # ssh remote user
-          user: ${{ secret.USER }}
+          user: ${{ secrets.USER }}
           # content of ssh private key. ex raw content of ~/.ssh/id_rsa
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # connection timeout to remote host
