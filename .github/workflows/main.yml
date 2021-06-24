@@ -50,11 +50,12 @@ jobs:
           connect_timeout: 10s
           # execute pre-commands before scp
           first_ssh: |
-            echo "hello world"
-            lsb_release -a
+            cd ~/discord-dn-bot/
+            git pull origin master
+            source ./venv/bin/activate 
+            pip --version
+            pip list 
           # scp from local to remote
-          scp: | 
-            './dist/bot' => "/home/steven/discord-dn-bot/"
           # execute post-commands after scp
           last_ssh: |
             echo "hello world2"
