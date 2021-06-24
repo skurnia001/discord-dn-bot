@@ -26,15 +26,13 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Pip install
+        run: pip install -r requirements.txt
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Build project 
         run: |
-          ls
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          pyinstaller --onefile --add-data="skill.csv:." bot.py
       - name: ssh-scp-ssh-pipelines
         # You may pin to the exact commit or the version.
         # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
@@ -56,9 +54,7 @@ jobs:
             lsb_release -a
           # scp from local to remote
           scp: | 
-            './bot.py*' => "/home/steven/discord-dn-bot/"
-            './skill.csv*' => "/home/steven/discord-dn-bot/"
-            './requirements.txt*' => "/home/steven/discord-dn-bot/"
+            './dist/bot' => "/home/steven/discord-dn-bot/"
           # execute post-commands after scp
           last_ssh: |
             echo "hello world2"
