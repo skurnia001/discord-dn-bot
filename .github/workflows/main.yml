@@ -54,7 +54,8 @@ jobs:
             echo "hello world"
             lsb_release -a
           # scp from local to remote
-          scp: # optional
+          scp: |
+            scp bot.py skil.csv requirements.txt steven@165.173.9.30:12022/home/steven/discord-dn-bot/
           # execute post-commands after scp
           last_ssh: |
             echo "hello world2"
