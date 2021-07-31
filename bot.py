@@ -100,8 +100,8 @@ class DNReminderEventBot(commands.Cog):
         c = bot.get_channel(CHANNEL_ID)
         arr = []
         query_dic = {
-            "start_date": {"$lt": datetime.datetime.utcnow()},
-            "end_date": {"$gt": datetime.datetime.utcnow()}
+            "start_date": {"$lt": datetime.datetime.now()},
+            "end_date": {"$gt": datetime.datetime.now()}
         }
         for row in self.db.find(query_dic):
             del row['_id']
@@ -119,8 +119,8 @@ class DNReminderEventBot(commands.Cog):
     async def qev(self, ctx):
         arr = []
         query_dic = {
-            "start_date": {"$lt": datetime.datetime.utcnow()},
-            "end_date": {"$gt": datetime.datetime.utcnow()}
+            "start_date": {"$lt": datetime.datetime.now()},
+            "end_date": {"$gt": datetime.datetime.now()}
         }
         for row in self.db.find(query_dic):
             del row['_id']
@@ -146,7 +146,7 @@ class DNReminderEventBot(commands.Cog):
             end_day: int,
             event_desc: str = ''):
         start_date = datetime.datetime(start_year, start_month, start_day)
-        end_date = datetime.datetime(end_year, end_month, end_day)
+        end_date = datetime.datetime(end_year, end_month, end_day, 23, 59, 59)
         obj_dic = {
             "event_name": event_name,
             "event_desc": event_desc,
