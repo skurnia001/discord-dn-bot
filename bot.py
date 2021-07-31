@@ -116,7 +116,7 @@ class DNReminderEventBot(commands.Cog):
     # TODO: REFACTOR
     @commands.command(name="qev", aliases=['queryevent', 'qevent'],
                       help="Get all events")
-    async def func(self, ctx):
+    async def qev(self, ctx):
         arr = []
         query_dic = {
             "start_date": {"$lt": datetime.datetime.utcnow()},
