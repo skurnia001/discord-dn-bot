@@ -1,6 +1,7 @@
 # bot.py
 import datetime
 import difflib
+import logging
 import os
 import string
 
@@ -18,8 +19,27 @@ DB_UNAME = os.getenv('DB_UNAME')
 DB_PWD = os.getenv('DB_PWD')
 DB_URL = os.getenv('DB_URL')
 
+master_bot = commands.Bot(command_prefix=('/',))
 
-bot = commands.Bot(command_prefix=('/',))
+
+class DNSTGReq(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.df = pd.read_csv('stg_req.csv')
+        self.df = self.df.set_index('Floor')
+        self.stg_min = min(self.df.index)
+        self.stg_max = max(self.df.index)
+        self.prefix = '/'
+
+    @commands.command(name='cdm', aliases=['critical_damage', 'critd' ],
+                      help='Finds a class whose skill match the skill name given.')
+    async def cdm(self, ctx, stg=None):
+        res = self.df[['CDM Cap', 'CDM Penalty', 'CDM % Cap']]
+        if stg and stg.isnumeric() and int(stg) in range(self.stg_min, self.stg_max+1):
+            res = res.loc[int(stg)]
+        # logging.warning(res)
+        await ctx.send("```\n"+res.to_string()+"```\n")
+
 
 
 class DNSkillQuery(commands.Cog):
@@ -73,7 +93,7 @@ class Venti(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author == bot.user:
+        if message.author == master_bot.user:
             return
         if "ehe" in message.content.lower():
             await message.channel.send("EHE TE NANDAYO")
@@ -97,7 +117,7 @@ class DNReminderEventBot(commands.Cog):
         self.db = self.client.dn_event_db.dn_event_db
 
     async def func(self):
-        c = bot.get_channel(CHANNEL_ID)
+        c = master_bot.get_channel(CHANNEL_ID)
         arr = []
         query_dic = {
             "start_date": {"$lt": datetime.datetime.now()},
@@ -157,9 +177,10 @@ class DNReminderEventBot(commands.Cog):
         await ctx.send("event recorded")
 
 
-bot.add_cog(DNSkillQuery(bot))
-bot.add_cog(Venti(bot))
-bot.add_cog(DNReminderEventBot(bot))
+master_bot.add_cog(DNSkillQuery(master_bot))
+master_bot.add_cog(Venti(master_bot))
+master_bot.add_cog(DNReminderEventBot(master_bot))
+master_bot.add_cog(DNSTGReq(master_bot))
 
 print("Bot started...")
-bot.run(TOKEN)
+master_bot.run(TOKEN)
