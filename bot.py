@@ -1,7 +1,6 @@
 # bot.py
 import datetime
 import difflib
-import logging
 import os
 import string
 
@@ -30,16 +29,33 @@ class DNSTGReq(commands.Cog):
         self.stg_min = min(self.df.index)
         self.stg_max = max(self.df.index)
         self.prefix = '/'
+        self.command_mapper = {
+            'cdmg': ['CDM Cap', 'CDM Penalty', 'CDM % Cap'],
+            'crit': ['Crit Cap', 'Crit Penalty', 'Crit % Cap'],
+            'def': ['Pdef/Mdef Cap', 'Pdef/Mdef Penalty', 'Pdef/Mdef % Cap'],
+            'mdef': ['Pdef/Mdef Cap', 'Pdef/Mdef Penalty', 'Pdef/Mdef % Cap'],
+            'fd': ['FD Cap', 'FD Penalty', 'FD % Cap'],
+        }
 
-    @commands.command(name='cdm', aliases=['critical_damage', 'critd' ],
-                      help='Finds a class whose skill match the skill name given.')
-    async def cdm(self, ctx, stg=None):
-        res = self.df[['CDM Cap', 'CDM Penalty', 'CDM % Cap']]
-        if stg and stg.isnumeric() and int(stg) in range(self.stg_min, self.stg_max+1):
-            res = res.loc[int(stg)]
-        # logging.warning(res)
-        await ctx.send("```\n"+res.to_string()+"```\n")
+    @commands.command(name='stgreq', aliases=['crit', 'cdmg', 'def', 'mdef', 'fd'],
+                      help='Returns the required stats given the stg requirement (13-20). ' +
+                           'Refer to the command alias for stats.')
+    async def stgreq(self, ctx, stg=None):
 
+        stat = self.command_mapper.get(ctx.invoked_with, self.df.columns)
+
+        # Return error message if stg is not valid - it's not a valid number or it's not within range
+        if stg and (not stg.isnumeric() or (int(stg) not in range(self.stg_min, self.stg_max + 1))):
+            res = 'STG argument is wrong! Please enter a valid integer between 13 and 20 inclusive.'
+
+        # Return the stat for a given stg
+        else:
+            res = self.df[stat]
+            if stg:
+                res = res.loc[int(stg)]
+            res = res.to_string()
+
+        await ctx.send("```\n"+res+"```\n")
 
 
 class DNSkillQuery(commands.Cog):

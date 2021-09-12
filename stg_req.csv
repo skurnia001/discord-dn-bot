@@ -1,4 +1,4 @@
-Floor,Crit Penalty,CDM Penalty,Pdef/Mdef,FD,Critical Cap,CDM Cap,Pdef/Mdef Cap,FD Cap,Critical % Cap,CDM % Cap,Pdef/Mdef % Cap,FD % Cap
+Floor,Crit Penalty,CDM Penalty,Pdef/Mdef Penalty,FD Penalty,Crit Cap,CDM Cap,Pdef/Mdef Cap,FD Cap,Crit % Cap,CDM % Cap,Pdef/Mdef % Cap,FD % Cap
 13,0,0,0,0,834601,1348924,243214,17933,89.00%,300.00%,85.00%,100.00%
 14,100000,450000,30000,1200,934601,1798924,273214,19133,99.66%,333.36%,95.48%,106.69%
 15,200000,900000,60000,2400,1034601,2248924,303214,20333,110.33%,366.72%,105.97%,113.38%
