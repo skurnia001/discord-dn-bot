@@ -31,13 +31,14 @@ class DNSTGReq(commands.Cog):
         self.prefix = '/'
         self.command_mapper = {
             'cdmg': ['CDM Cap', 'CDM Penalty', 'CDM % Cap'],
+            'cdm': ['CDM Cap', 'CDM Penalty', 'CDM % Cap'],
             'crit': ['Crit Cap', 'Crit Penalty', 'Crit % Cap'],
             'def': ['Pdef/Mdef Cap', 'Pdef/Mdef Penalty', 'Pdef/Mdef % Cap'],
             'mdef': ['Pdef/Mdef Cap', 'Pdef/Mdef Penalty', 'Pdef/Mdef % Cap'],
             'fd': ['FD Cap', 'FD Penalty', 'FD % Cap'],
         }
 
-    @commands.command(name='stgreq', aliases=['crit', 'cdmg', 'def', 'mdef', 'fd'],
+    @commands.command(name='stgreq', aliases=['crit', 'cdmg', 'cdm', 'def', 'mdef', 'fd'],
                       help='Returns the required stats given the stg requirement (13-20). ' +
                            'Refer to the command alias for stats.')
     async def stgreq(self, ctx, stg=None):
