@@ -18,8 +18,45 @@ DB_UNAME = os.getenv('DB_UNAME')
 DB_PWD = os.getenv('DB_PWD')
 DB_URL = os.getenv('DB_URL')
 
+master_bot = commands.Bot(command_prefix=('/',))
 
-bot = commands.Bot(command_prefix=('/',))
+
+class DNSTGReq(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.df = pd.read_csv('stg_req.csv')
+        self.df = self.df.set_index('Floor')
+        self.stg_min = min(self.df.index)
+        self.stg_max = max(self.df.index)
+        self.prefix = '/'
+        self.command_mapper = {
+            'cdmg': ['CDM Cap', 'CDM Penalty', 'CDM % Cap'],
+            'cdm': ['CDM Cap', 'CDM Penalty', 'CDM % Cap'],
+            'crit': ['Crit Cap', 'Crit Penalty', 'Crit % Cap'],
+            'def': ['Pdef/Mdef Cap', 'Pdef/Mdef Penalty', 'Pdef/Mdef % Cap'],
+            'mdef': ['Pdef/Mdef Cap', 'Pdef/Mdef Penalty', 'Pdef/Mdef % Cap'],
+            'fd': ['FD Cap', 'FD Penalty', 'FD % Cap'],
+        }
+
+    @commands.command(name='stgreq', aliases=['crit', 'cdmg', 'cdm', 'def', 'mdef', 'fd'],
+                      help='Returns the required stats given the stg requirement (13-20). ' +
+                           'Refer to the command alias for stats.')
+    async def stgreq(self, ctx, stg=None):
+
+        stat = self.command_mapper.get(ctx.invoked_with, self.df.columns)
+
+        # Return error message if stg is not valid - it's not a valid number or it's not within range
+        if stg and (not stg.isnumeric() or (int(stg) not in range(self.stg_min, self.stg_max + 1))):
+            res = 'STG argument is wrong! Please enter a valid integer between 13 and 20 inclusive.'
+
+        # Return the stat for a given stg
+        else:
+            res = self.df[stat]
+            if stg:
+                res = res.loc[int(stg)]
+            res = res.to_string()
+
+        await ctx.send("```\n"+res+"```\n")
 
 
 class DNSkillQuery(commands.Cog):
@@ -73,7 +110,7 @@ class Venti(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author == bot.user:
+        if message.author == master_bot.user:
             return
         if "ehe" in message.content.lower():
             await message.channel.send("EHE TE NANDAYO")
@@ -97,7 +134,7 @@ class DNReminderEventBot(commands.Cog):
         self.db = self.client.dn_event_db.dn_event_db
 
     async def func(self):
-        c = bot.get_channel(CHANNEL_ID)
+        c = master_bot.get_channel(CHANNEL_ID)
         arr = []
         query_dic = {
             "start_date": {"$lt": datetime.datetime.now()},
@@ -157,9 +194,10 @@ class DNReminderEventBot(commands.Cog):
         await ctx.send("event recorded")
 
 
-bot.add_cog(DNSkillQuery(bot))
-bot.add_cog(Venti(bot))
-bot.add_cog(DNReminderEventBot(bot))
+master_bot.add_cog(DNSkillQuery(master_bot))
+master_bot.add_cog(Venti(master_bot))
+master_bot.add_cog(DNReminderEventBot(master_bot))
+master_bot.add_cog(DNSTGReq(master_bot))
 
 print("Bot started...")
-bot.run(TOKEN)
+master_bot.run(TOKEN)

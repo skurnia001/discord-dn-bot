@@ -1,0 +1,1 @@
+pyinstaller --onefile --add-data="skill.csv:." bot.py
