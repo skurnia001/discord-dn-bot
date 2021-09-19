@@ -127,19 +127,20 @@ class DNReminderEventBot(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.scheduler = AsyncIOScheduler()
-        self.scheduler.add_job(self.func, CronTrigger(hour="0, 21, 23"))
+        self.scheduler.add_job(self.reminder_callback, CronTrigger(hour="0, 21, 23"))
         self.scheduler.start()
         connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority"
         self.client = pymongo.MongoClient(connection_string)
         self.db = self.client.dn_event_db.dn_event_db
 
-    async def func(self):
-        c = master_bot.get_channel(CHANNEL_ID)
+    def get_event_from_db(self, mode="current"):
         arr = []
-        query_dic = {
-            "start_date": {"$lt": datetime.datetime.now()},
-            "end_date": {"$gt": datetime.datetime.now()}
-        }
+        query_dic = {}
+        if mode == "current":
+            query_dic = {
+                "start_date": {"$lt": datetime.datetime.now()},
+                "end_date": {"$gt": datetime.datetime.now()}
+            }
         for row in self.db.find(query_dic):
             del row['_id']
             row['start_date'] = row['start_date'].strftime('%Y-%m-%d %H:%M:%S')
@@ -148,25 +149,18 @@ class DNReminderEventBot(commands.Cog):
         res_df = pd.DataFrame(arr)
         if len(arr) != 0:  # TODO: STUPID HOTFIX
             res_df.columns = ["Event Name", "Event Description", "Start Date", "End Date"]
-        await c.send("```\n"+res_df.to_string()+"\n```")
+        return res_df
 
-    # TODO: REFACTOR
+    async def reminder_callback(self):
+        c = master_bot.get_channel(CHANNEL_ID)
+        res_df = self.get_event_from_db()
+        if len(res_df) > 0:
+            await c.send("```\n"+res_df.to_string()+"\n```")
+
     @commands.command(name="qev", aliases=['queryevent', 'qevent'],
                       help="Get all events")
-    async def qev(self, ctx):
-        arr = []
-        query_dic = {
-            "start_date": {"$lt": datetime.datetime.now()},
-            "end_date": {"$gt": datetime.datetime.now()}
-        }
-        for row in self.db.find(query_dic):
-            del row['_id']
-            row['start_date'] = row['start_date'].strftime('%Y-%m-%d %H:%M:%S')
-            row['end_date'] = row['end_date'].strftime('%Y-%m-%d %H:%M:%S')
-            arr.append(row)
-        res_df = pd.DataFrame(arr)
-        if len(arr) != 0:  # TODO: STUPID HOTFIX
-            res_df.columns = ["Event Name", "Event Description", "Start Date", "End Date"]
+    async def query_event(self, ctx, mode="current"):
+        res_df = self.get_event_from_db(mode)
         await ctx.send("```\n" + res_df.to_string() + "\n```")
 
     @commands.command(name='addev', aliases=['addevent'],
