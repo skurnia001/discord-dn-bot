@@ -1,5 +1,6 @@
 # bot.py
 import datetime
+from dateutil import relativedelta
 import difflib
 import os
 import string
@@ -129,7 +130,7 @@ class DNReminderEventBot(commands.Cog):
         self.scheduler = AsyncIOScheduler()
         self.scheduler.add_job(self.reminder_callback, CronTrigger(hour="0, 21, 23"))
         self.scheduler.start()
-        connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority"
+        connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE"
         self.client = pymongo.MongoClient(connection_string)
         self.db = self.client.dn_event_db.dn_event_db
 
@@ -140,6 +141,12 @@ class DNReminderEventBot(commands.Cog):
             query_dic = {
                 "start_date": {"$lt": datetime.datetime.now()},
                 "end_date": {"$gt": datetime.datetime.now()}
+            }
+        else:
+            curdate = datetime.datetime.now()
+            query_dic = {
+                "start_date": {"$gt": (curdate.replace(day=1) - datetime.timedelta(days=1)).replace(day=1)},
+                "end_date": {"$lt": curdate + relativedelta.relativedelta(day=31)}
             }
         for row in self.db.find(query_dic):
             del row['_id']
