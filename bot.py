@@ -128,7 +128,7 @@ class DNReminderEventBot(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.scheduler = AsyncIOScheduler()
-        self.scheduler.add_job(self.reminder_callback, CronTrigger(hour="0, 21, 23"))
+        self.scheduler.add_job(self.reminder_callback, CronTrigger(hour="0, 18, 21, 23"))
         self.scheduler.start()
         connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE"
         self.client = pymongo.MongoClient(connection_string)
