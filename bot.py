@@ -48,7 +48,7 @@ class DNSTGReq(commands.Cog):
 
         # Return error message if stg is not valid - it's not a valid number or it's not within range
         if stg and (not stg.isnumeric() or (int(stg) not in range(self.stg_min, self.stg_max + 1))):
-            res = 'STG argument is wrong! Please enter a valid integer between 13 and 20 inclusive.'
+            res = f"STG argument is wrong! Please enter a valid integer between {self.stg_min} and {self.stg_max}."
 
         # Return the stat for a given stg
         else:
