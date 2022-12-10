@@ -1,7 +1,5 @@
 from discord.ext import commands
 
-from bot import master_bot
-
 
 class Venti(commands.Cog):
     def __init__(self, bot: commands.Bot) -> None:
@@ -13,7 +11,7 @@ class Venti(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author == master_bot.user:
+        if message.author == self.bot.user:
             return
         if "ehe" in message.content.lower():
             await message.channel.send("EHE TE NANDAYO")

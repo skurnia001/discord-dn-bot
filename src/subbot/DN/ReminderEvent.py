@@ -2,24 +2,22 @@ import datetime
 from typing import Literal
 
 import pandas as pd
-import pymongo
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from dateutil import relativedelta
 from discord.ext import commands
 
-from bot import DB_UNAME, DB_PWD, DB_URL, master_bot, CHANNEL_ID
+from src.db.db import DB
 
 
 class DNReminderEventBot(commands.Cog):
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot: commands.Bot, channel_id: int):
         self.bot = bot
         self.scheduler = AsyncIOScheduler()
         self.scheduler.add_job(self.reminder_callback, CronTrigger(hour="0, 18, 21, 23"))
         self.scheduler.start()
-        connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE"
-        self.client = pymongo.MongoClient(connection_string)
-        self.db = self.client.dn_event_db.dn_event_db
+        self.channel_id = channel_id
+        self.db = DB().get_client().dn_event_db.dn_event_db
 
     def get_event_from_db(self, mode: str = "current") -> pd.DataFrame:
         arr = []
@@ -46,7 +44,7 @@ class DNReminderEventBot(commands.Cog):
         return res_df
 
     async def reminder_callback(self) -> None:
-        c = master_bot.get_channel(CHANNEL_ID)
+        c = self.bot.get_channel(self.channel_id)
         res_df = self.get_event_from_db()
         if len(res_df) > 0:
             await c.send("```\n" + res_df.to_string() + "\n```")
