@@ -47,6 +47,7 @@ jobs:
           scp: | 
             './bot.py*' => "/home/steven/discord-dn-bot/"
             './skill.csv*' => "/home/steven/discord-dn-bot/"
+            './src' => "/home/steven/discord-dn-bot/"
             './requirements.txt*' => "/home/steven/discord-dn-bot/"
             './stg_req.csv*' => "/home/steven/discord-dn-bot/"
           # execute post-commands after scp
