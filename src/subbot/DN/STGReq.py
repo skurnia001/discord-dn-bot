@@ -37,4 +37,9 @@ class DNSTGReq(commands.Cog):
                 res = res.loc[stg]
             res = res.to_string()
 
-        await ctx.send("```\n" + res + "```\n")
+        command_source = ctx.invoked_with.title()
+        if command_source == 'stgreq':
+            command_source = 'STG'
+        await ctx.send("```\n" + f"{command_source} requirements for {stg}:\n" + res + "```\n")
+
+
