@@ -42,7 +42,7 @@ jobs:
           first_ssh: |
             cd ~/discord-dn-bot/
             source ./venv/bin/activate 
-            sudo systemctl stop discord-dn-bot.service
+            sudo systemctl stop kursi-taman-discord-bot.service 
           # scp from local to remote
           scp: | 
             './bot.py*' => "/home/steven/discord-dn-bot/"
@@ -56,4 +56,4 @@ jobs:
             cd ~/discord-dn-bot/
             source ./venv/bin/activate 
             pip install -r requirements.txt
-            sudo systemctl start discord-dn-bot.service
+            sudo systemctl start kursi-taman-discord-bot.service 
