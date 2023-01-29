@@ -16,9 +16,8 @@ class DB(metaclass=Singleton):
         DB_UNAME = os.getenv('DB_UNAME')
         DB_PWD = os.getenv('DB_PWD')
         DB_URL = os.getenv('DB_URL')
-        connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority&ssl=true" \
-                            f"&ssl_cert_reqs=CERT_NONE "
-        self.client = pymongo.MongoClient(connection_string)
+        connection_string = f"mongodb+srv://{DB_UNAME}:{DB_PWD}@{DB_URL}/test?retryWrites=true&w=majority" 
+        self.client = pymongo.MongoClient(connection_string, tls=True, tlsAllowInvalidCertificates=True)
         print(self.client.server_info())
 
     def get_client(self):
