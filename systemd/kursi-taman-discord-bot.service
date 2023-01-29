@@ -1,0 +1,17 @@
+[Unit]
+Description=DN Discord Bot service for KursiTaman
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/steven/discord-dn-bot/venv/bin/python /home/steven/discord-dn-bot/bot.py
+WorkingDirectory=/home/steven/discord-dn-bot/
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%n
+StandardInput=tty-force
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
