@@ -22,11 +22,21 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: ssh-scp-ssh-pipelines
+      - name: first ssh
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ~/discord-dn-bot/
+            source ./venv/bin/activate 
+            sudo systemctl stop kursi-taman-discord-bot.service
+      - name: scp
         # You may pin to the exact commit or the version.
         # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
-        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        uses: cross-the-world/scp-pipeline@master
         with:
           # ssh remote host
           host: ${{ secrets.HOST }}
@@ -38,12 +48,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # connection timeout to remote host
           connect_timeout: 10s
-          # execute pre-commands before scp
-          first_ssh: |
-            sudo systemctl stop kursi-taman-discord-bot.service
-            cd ~/discord-dn-bot/
-            source ./venv/bin/activate 
-          # scp from local to remote
           scp: | 
             './bot.py*' => "/home/steven/discord-dn-bot/"
             './skill.csv*' => "/home/steven/discord-dn-bot/"
@@ -51,9 +55,15 @@ jobs:
             './requirements.txt*' => "/home/steven/discord-dn-bot/"
             './stg_req.csv*' => "/home/steven/discord-dn-bot/"
             './dungeon.csv*' => "/home/steven/discord-dn-bot/"
-          # execute post-commands after scp
-          last_ssh: |
+      - name: last ssh
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
             cd ~/discord-dn-bot/
             source ./venv/bin/activate 
             pip install -r requirements.txt
-            sudo systemctl start kursi-taman-discord-bot.service 
+            sudo systemctl start kursi-taman-discord-bot.service
