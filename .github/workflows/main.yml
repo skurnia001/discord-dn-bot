@@ -40,9 +40,9 @@ jobs:
           connect_timeout: 10s
           # execute pre-commands before scp
           first_ssh: |
+            sudo systemctl stop kursi-taman-discord-bot.service
             cd ~/discord-dn-bot/
             source ./venv/bin/activate 
-            sudo systemctl stop kursi-taman-discord-bot.service 
           # scp from local to remote
           scp: | 
             './bot.py*' => "/home/steven/discord-dn-bot/"
