@@ -39,9 +39,10 @@ class DNDungeonKilos(commands.Cog):
                           description='Check what dungeons are Lucky Zone today')
     async def dg(self, i: Interaction) -> None:
         res = self.db.find_one({'id': 1})
-        await i.response.send_message(f"""```Today's dungeon (valid until {res['date'].strftime('%Y-%m-%d %H:%M:%S')})
-{self.df.iloc[[res['dg1'], res['dg2'],res['dg3']]][["Name in Selection", "Location", "Kilos Material"]].to_string()}```
-""")
+        res_pd = self.df.iloc[[res['dg1'], res['dg2'],res['dg3']]][["Name in Selection", "Location", "Kilos Material"]]
+        message = f"**Today's dungeon (valid until {res['date'].strftime('%Y-%m-%d %H:%M:%S')}**)"
+        message += f"```\n{res_pd.to_string(index=False)}```"
+        await i.response.send_message(message)
 
     @app_commands.command(name='dgup',
                           description='Update which dungeons are Lucky Zone')
@@ -64,7 +65,7 @@ class DNDungeonKilos(commands.Cog):
         tmp['Score'] = tmp["Name in Selection"].map(lambda x: self.sim_score(x, name))
         tmp.sort_values('Score', inplace=True, ascending=False)
         res = tmp[tmp['Score'] > self.thresh]
-        await i.response.send_message("```\n" + res.to_string() + "```\n")
+        await i.response.send_message("```\n" + res.to_string(index=False) + "```\n")
 
     async def cog_check(self, ctx: commands.Context) -> bool:
         return ctx.prefix == self.prefix
