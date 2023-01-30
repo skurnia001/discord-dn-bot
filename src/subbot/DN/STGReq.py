@@ -50,15 +50,12 @@ class DNSTGReq(commands.Cog):
 
         # Generate and fill the output table
         res = []
-        print(stats)
 
         for idx, stat in enumerate(stats):
             columns = self.command_mapper.get(stat, self.df.columns)
-            print(f"columns to process are {columns}")
             # Return the stat for a given stg
             data = self.df[columns]
             data = data.loc[stg]
-            print(data)
             entry = {
                 "Index": idx,
                 "Stat": self.stgreq_command_long[stat].title(),
