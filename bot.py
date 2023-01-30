@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # bot.py
 import asyncio
-import logging
-import logging.handlers
-import sys
 import yaml
 
 import discord
@@ -18,6 +15,7 @@ from src.subbot.DN.ReminderEvent import DNReminderEventBot
 from src.subbot.DN.STGReq import DNSTGReq
 from src.subbot.DN.SkillQuery import DNSkillQuery
 from src.subbot.Venti import Venti
+from src.utils.logger import setup_logger
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -61,29 +59,6 @@ async def sync(ctx: Context) -> None:
         f"Synced {len(synced)} commands"
     )
 
-
-# Logger setup 
-def setup_logger(name='discord') -> logging.Logger:
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
-    dt_fmt = '%Y-%m-%d %H:%M:%S'
-    formatter = logging.Formatter('[{asctime}] [{levelname:<8}] {name}: {message}', dt_fmt, style='{')
-
-    file_handler = logging.handlers.RotatingFileHandler(
-        filename='log/discord.log',
-        encoding='utf-8',
-        maxBytes=4 * 1024 * 1024,  # 1 MiB
-        backupCount=5,  # Rotate through 5 files
-    )
-    file_handler.setFormatter(formatter)
-
-    console_handler = (logging.StreamHandler(sys.stdout)) # Mirror logs to stdout for journalctl to catch and for debugging
-    console_handler.setFormatter(formatter)
-
-    logger.addHandler(file_handler)
-    logger.addHandler(console_handler)
-    return logger
-
 async def main() -> None:
     logger = setup_logger()
 
@@ -93,7 +68,7 @@ async def main() -> None:
         with open("config.yaml", "r") as stream:
             config= yaml.safe_load(stream)
     except FileNotFoundError or yaml.YAMLError as exc:
-        logging.warning(f"Unable to load config file. Reverting to default... Error is {exc}")
+        logger.warning(f"Unable to load config file. Reverting to default... Error is {exc}")
     if 'DisabledServices' not in config:
         config['DisabledServices']=list()
 
