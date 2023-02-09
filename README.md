@@ -1,4 +1,5 @@
 # Dragon Nest Dragon Jade Query Discord Bot
+![CD Status](https://github.com/skurnia001/discord-dn-bot/actions/workflows/main.yml/badge.svg)
 
 [Dragon Nest](https://en.wikipedia.org/wiki/Dragon_Nest)
 
