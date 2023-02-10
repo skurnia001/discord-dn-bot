@@ -9,6 +9,7 @@ chardet==3.0.4
 colorama==0.4.4
 discord.py==2.0.1
 dnspython==2.1.0
+dpytest==0.6.1
 future==0.18.3
 idna==3.1
 isort==5.8.0
@@ -22,6 +23,7 @@ pyinstaller==5.7.0
 pyinstaller-hooks-contrib==2022.15
 pylint==2.8.3
 pymongo==4.3.3
+pytest-asyncio==0.20.3
 python-dateutil==2.8.1
 python-dotenv==0.15.0
 pytz==2021.1
