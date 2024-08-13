@@ -22,7 +22,7 @@ pefile==2022.5.30
 pyinstaller==5.7.0
 pyinstaller-hooks-contrib==2022.15
 pylint==2.8.3
-pymongo==4.3.3
+pymongo==4.6.3
 pytest-asyncio==0.20.3
 python-dateutil==2.8.1
 python-dotenv==0.15.0
